@@ -1,0 +1,70 @@
+.user__filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.all__tasks {
+  padding: 5px 10px;
+  background-color: #ffffff;
+  color: #000000;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.all__tasks:hover {
+  background-color: #ff4d00;
+  color: #000000;
+}
+
+.completed__tasks {
+  padding: 5px 10px;
+  background-color: #ffffff;
+  color: #000000;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.completed__tasks:hover {
+  background-color: #ff4d00;
+  color: #000000;
+}
+
+.uncompleted__tasks {
+  padding: 5px 10px;
+  background-color: #ffffff;
+  color: #000000;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.uncompleted__tasks:hover {
+  background-color: #ff4d00;
+  color: #000000;
+}
+
+.btn__newTasks {
+  padding: 5px 10px;
+  background-color: #ffffff;
+  color: #000000;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.btn__newTasks:hover {
+  background-color: #ff4d00;
+  color: #000000;
+}
+
+.user__tasks {
+  display: flex;
+  gap: 15px;
+  overflow: auto;
+}
+
+.user__noTasks {
+  font-size: 18px;
+  text-align: center;
+  margin-top: 50px;
+  width: 100%;
+}
