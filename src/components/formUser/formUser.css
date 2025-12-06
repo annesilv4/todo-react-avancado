@@ -1,0 +1,83 @@
+.formLogin__title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.form__login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  height: 381px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 400px;
+  height: 223px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 1rem;
+  justify-content: space-between;
+}
+
+.login__email,
+.login__password {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.login__email label,
+.login__password label {
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.login__email input,
+.login__password input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login__email input:focus,
+.login__password input:focus {
+  outline: none;
+  border-color: #ff6f00;
+}
+
+.form__login-button {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff6f00;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.form__login-button:hover {
+  background-color: gray;
+}
+
+.form__login-button:active {
+  background-color: #ff6f00;
+}
+
+.form__register-link {
+  text-decoration: none;
+  color: #ff6f00;
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.form__register-link:hover {
+  text-decoration: underline;
+}
