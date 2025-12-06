@@ -7,6 +7,8 @@ import FiltrarTarefa from "../../components/filterTarefa/filterTarefa";
 export default function Tarefa() {
     return (
         <>
+            <title>Todo List - Tarefas</title>
+
             <Header />
 
             <main className="user__tarefas">
