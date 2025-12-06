@@ -47,3 +47,18 @@
   color: #333333;
   font-weight: 500;
 }
+
+.header__loginButton {
+  background-color: #ff6f00;
+  color: #ffffff;
+  border: none;
+  width: 138px;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.header__loginButton:hover {
+  background-color: #ff5722;
+}
