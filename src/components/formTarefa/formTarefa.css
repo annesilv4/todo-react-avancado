@@ -40,8 +40,10 @@ form {
 
 .form__title input {
   padding: 0.5rem;
+  padding-left: 12px;
   border: 1px solid #ccc;
   border-radius: 0.5rem;
+  font-size: 15px;
 }
 
 .form__description {
@@ -62,6 +64,8 @@ form {
   resize: vertical;
   height: 128px;
   width: 100%;
+  font-size: 15px;
+  padding-left: 12px;
 }
 
 .form__data {
