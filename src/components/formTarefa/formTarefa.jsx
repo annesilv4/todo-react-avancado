@@ -5,6 +5,7 @@ import Footer from "../footer/footer";
 export default function FormTarefa() {
     return (
         <>
+            <title>Todo List - Criando Tarefa</title>
             <Header />
 
             <main>
