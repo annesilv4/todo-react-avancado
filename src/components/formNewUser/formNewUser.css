@@ -1,0 +1,80 @@
+.form__newUser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form__title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.form__cadasterUser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: 492px;
+  width: 410px;
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+}
+
+.form__cadasterFirstName,
+.form__cadasterLastName,
+.form__cadasterUserEmail,
+.form__cadasterUserPassword,
+.form__cadasterUserConfirmPassword {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 90%;
+}
+
+.form__cadasterFirstName label,
+.form__cadasterLastName label,
+.form__cadasterUserEmail label,
+.form__cadasterUserPassword label,
+.form__cadasterUserConfirmPassword label {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.form__cadasterFirstName input,
+.form__cadasterLastName input,
+.form__cadasterUserEmail input,
+.form__cadasterUserPassword input,
+.form__cadasterUserConfirmPassword input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 14px;
+  padding-left: 12px;
+}
+
+.btn__cadasterUser {
+  width: 90%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #ff6f00;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn__cadasterUser:hover {
+  background-color: #e05600;
+}
+
+.btn__cadasterUser:active {
+  background-color: #c84a00;
+}
