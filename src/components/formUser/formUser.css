@@ -80,4 +80,5 @@ form {
 
 .form__register-link:hover {
   text-decoration: underline;
+  color: gray;
 }

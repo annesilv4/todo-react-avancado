@@ -1,9 +1,19 @@
 import HeaderLogin from "../header/header-login/header-login";
 import Footer from "../footer/footer";
 import "./formUser.css";
-import { Link } from "react-router-dom";  // <-- AQUI
+import { Link } from "react-router-dom";
 
-export default function FormLoginUser() {
+export default function FormLoginUser({ onGoToRegister, onLogin }) {
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        onLogin(email, password); // <-- CHAMA O LOGIN
+    };
+
     return (
         <>
             <title>Todo List - Login</title>
@@ -12,7 +22,8 @@ export default function FormLoginUser() {
             <main>
                 <div className="form__login">
                     <h1 className="formLogin__title">Login</h1>
-                    <form>
+
+                    <form onSubmit={handleSubmit}>   {/* <-- AQUI */}
                         <div className="login__email">
                             <label htmlFor="email">Email</label>
                             <input type="email" id="email" name="email" required />
@@ -23,11 +34,19 @@ export default function FormLoginUser() {
                             <input type="password" id="password" name="password" required />
                         </div>
 
-                        <button type="submit" className="form__login-button">Entrar</button>
+                        <button type="submit" className="form__login-button">
+                            Entrar
+                        </button>
                     </form>
 
                     <p className="form__newRegister">
-                        Não tem uma conta? <Link to="/formNewUser">Crie uma agora!</Link>
+                        Não tem uma conta?
+                        <Link
+                            onClick={onGoToRegister}
+                            className="form__register-link"
+                        >
+                            Crie uma agora!
+                        </Link>
                     </p>
                 </div>
             </main>
