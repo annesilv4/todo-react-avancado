@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiTarefa = "https://crudcrud.com/api/82d0d4580b5f456391d262ce168d578c/task";
+const apiTarefa = "https://crudcrud.com/api/d1948600e2d64e5cae63aca6171a3c48/task";
 
 export const getTask = async () => {
     try {
