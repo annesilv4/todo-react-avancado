@@ -18,7 +18,7 @@ export default function Header() {
     };
 
     const userName = formatName(nameUser);
-    const initial = userName.charAt(0).toUpperCase();
+    const initial = userName.charAt(0).toUpperCase(); // Código para colocar a inicial do usuário de avatar
 
     return (
         <header className="header__page">
