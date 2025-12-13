@@ -22,6 +22,11 @@
   color: #666666;
 }
 
+.header__user-actions {
+  display: flex;
+  gap: 1rem;
+}
+
 .header__user {
   display: flex;
   align-items: center;
@@ -61,4 +66,17 @@
 
 .header__loginButton:hover {
   background-color: #ff5722;
+}
+
+.header__logoutBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.header__logoutBtn:hover {
+  color: #d32f2f;
 }

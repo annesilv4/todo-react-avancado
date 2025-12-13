@@ -1,6 +1,7 @@
 import "./header.css";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { logoutUser } from "../../api/apiUsuario";
 
 export default function Header() {
     const token = localStorage.getItem("token");
@@ -17,6 +18,7 @@ export default function Header() {
     };
 
     const userName = formatName(nameUser);
+    const initial = userName.charAt(0).toUpperCase();
 
     return (
         <header className="header__page">
@@ -28,14 +30,23 @@ export default function Header() {
             </div>
 
             {token ? (
-                <div className="header__user">
-                    <div className="header__avatar">
-                        <FontAwesomeIcon icon={faUser} className="header__icon" />
-                    </div>
+                <div className="header__user-actions">
+                    <div className="header__user">
+                        <div className="header__avatar">
+                            {initial}
+                        </div>
 
-                    <p className="header__name">
-                        Olá, {userName || "Usuário"}
-                    </p>
+                        <p className="header__name">
+                            Olá, {userName || "Usuário"}
+                        </p>
+                    </div>
+                    <button
+                        className="header__logoutBtn"
+                        onClick={logoutUser}
+                        title="Sair"
+                    >
+                        <FontAwesomeIcon icon={faSignOutAlt} />
+                    </button>
                 </div>
             ) : (
                 <button
