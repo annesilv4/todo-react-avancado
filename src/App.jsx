@@ -1,7 +1,26 @@
-import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Tarefa from './pages/pageTarefa/tarefa';
+import PageLogin from './pages/pageLogin/pageLogin';
+import FormNewUser from './components/formNewUser/formNewUser';
+
 
 function App() {
+    return (
+        <BrowserRouter>
+            <Routes>
 
+                {/* Rota da Home */}
+                <Route path="/" element={<Tarefa />} />
+
+                {/* Rota de Login */}
+                <Route path='/login' element={<PageLogin />} />
+
+                {/* Rota de Novo Usuário */}
+                <Route path='/formNewUser' element={<FormNewUser />} />
+
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
-export default App
+export default App;
