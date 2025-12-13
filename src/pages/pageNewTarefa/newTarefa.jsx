@@ -1,6 +1,7 @@
 import FormTarefa from "../../components/formTarefa/formTarefa";
 import FormEditTarefa from "../../components/formEditTarefa/formEditTarefa";
 import { useState } from "react";
+import { createTask } from "../../api/apiTarefa";
 
 export default function Tarefa() {
     const [isAdd, setIsAdd] = useState(false);
@@ -8,7 +9,7 @@ export default function Tarefa() {
     return (
         <>
             {isAdd ? (
-                <FormTarefa onBackToTarefa={() => setIsAdd(false)} />
+                <FormTarefa onBackToTarefa={() => setIsAdd(false)} onSubmit={createTask} />
             ) : (
                 <FormEditTarefa onBackToTarefa={() => setIsAdd(false)} />
             )}
