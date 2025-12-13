@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiUser = "https://crudcrud.com/api/e1beafd8fec3447abee6c08134ee758a/user";
+const apiUser = "https://crudcrud.com/api/ff5500e4f54e4f89bc7f46aa711fc855/user";
 
 export const getUser = async () => {
     try {
@@ -55,6 +55,18 @@ export const updateUser = async (userId, userData) => {
         return response.data;
     } catch (error) {
         console.error("Error updating user:", error);
+        throw error;
+    }
+};
+
+export const logoutUser = () => {
+    try {
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        window.location.href = "/";
+        return true;
+    } catch (error) {
+        console.error("Error logging out user:", error);
         throw error;
     }
 };
