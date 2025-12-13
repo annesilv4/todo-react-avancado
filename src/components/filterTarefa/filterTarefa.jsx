@@ -1,6 +1,9 @@
 import "./filterTarefa.css";
+import { useNavigate } from "react-router-dom";
 
 export default function FiltrarTarefa() {
+    const navigate = useNavigate();
+
     return (
         <>
             <div className="user__filter">
@@ -11,7 +14,7 @@ export default function FiltrarTarefa() {
             </div>
 
             <div className="user__newTarefa">
-                <button className="btn__newTasks">Adicionar Tarefa +</button>
+                <button className="btn__newTasks" onClick={() => navigate("/formTarefa")}>Adicionar Tarefa +</button>
             </div>
         </>
     )
