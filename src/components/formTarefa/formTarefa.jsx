@@ -14,6 +14,8 @@ export default function FormTarefa({ onSubmit }) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        const userId = localStorage.getItem("token");
+
         const newTask = {
             title: task.valor,
             description: description.valor,
@@ -21,6 +23,7 @@ export default function FormTarefa({ onSubmit }) {
             dateEnd: dateEnd.valor,
             time: time.valor,
             status: "uncompleted",
+            userId: userId,
         };
 
         onSubmit(newTask);
