@@ -23,6 +23,7 @@
   color: #666;
   text-align: center;
 }
+
 .user__task {
   display: flex;
   flex-direction: row;
