@@ -86,6 +86,11 @@ input[type="checkbox"]:checked {
   justify-content: center;
 }
 
+.task__time {
+  font-size: 12px;
+  color: #666;
+}
+
 .user__taskContent {
   display: flex;
   flex-direction: column;
