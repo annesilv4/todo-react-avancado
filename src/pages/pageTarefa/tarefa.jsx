@@ -4,11 +4,12 @@ import Footer from "../../components/footer/footer";
 import FiltrarTarefa from "../../components/filterTarefa/filterTarefa";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getTask } from "../../api/apiTarefa";
+import { getTask, updateTask } from "../../api/apiTarefa";
 
 export default function Tarefa() {
     const [tasks, setTasks] = useState([]);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [checkedTasks, setCheckedTasks] = useState({});
     const navigate = useNavigate();
     // const [loading, setLoading] = useState(true);
 
@@ -38,6 +39,38 @@ export default function Tarefa() {
         fetchTarefas();
     }, [])
 
+    const handleCheckbox = async (taskId, task) => {
+        const newStatus = !checkedTasks[taskId];
+
+        // Atualiza estado local
+        setCheckedTasks(prev => ({
+            ...prev,
+            [taskId]: newStatus
+        }));
+
+        // Atualiza no banco de dados
+        try {
+            const updateData = {
+                title: task.title,
+                description: task.description,
+                dateStart: task.dateStart,
+                dateEnd: task.dateEnd,
+                userId: task.userId,
+                status: newStatus ? "completed" : "uncompleted"
+            };
+
+            await updateTask(taskId, updateData);
+            console.log("Tarefa atualizada com sucesso");
+        } catch (err) {
+            console.error("[ ERROR UPDATE TASK ]", err);
+            // Desfaz a mudança em caso de erro
+            setCheckedTasks(prev => ({
+                ...prev,
+                [taskId]: !newStatus
+            }));
+        }
+    }
+
     return (
         <>
             <title>Todo List - Tarefas</title>
@@ -57,9 +90,13 @@ export default function Tarefa() {
                                 <p className="user__noTasks">Nenhuma tarefa encontrada</p>
                             ) : (
                                 tasks.map(task => (
-                                    <div key={task._id} className="user__task">
+                                    <div key={task._id} className={`user__task ${checkedTasks[task._id] ? 'user__task--completed' : ''}`}>
                                         <div className="user__taskCheckbox">
-                                            <input type="checkbox" />
+                                            <input
+                                                type="checkbox"
+                                                onChange={() => handleCheckbox(task._id, task)}
+                                                checked={checkedTasks[task._id] || false}
+                                            />
                                         </div>
                                         <div className="user__taskContent">
                                             <h2 className="task__title">{task.title}</h2>
