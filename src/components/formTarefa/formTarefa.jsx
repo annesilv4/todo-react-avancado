@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function FormTarefa({ onSubmit }) {
     const task = useInput("");
-    const description = useInput("");
+    const description__task = useInput("");
     const dateStart = useInput("");
     const dateEnd = useInput("");
     const time = useInput("");
@@ -18,7 +18,7 @@ export default function FormTarefa({ onSubmit }) {
 
         const newTask = {
             title: task.valor,
-            description: description.valor,
+            description: description__task.valor,
             dateStart: dateStart.valor,
             dateEnd: dateEnd.valor,
             time: time.valor,
@@ -49,7 +49,7 @@ export default function FormTarefa({ onSubmit }) {
 
                         <div className="form__description">
                             <label htmlFor="description__task">Descrição da Tarefa</label>
-                            <textarea id="description__task" name="description__task" value={description.valor} onChange={description.onChange}></textarea>
+                            <textarea id="description__task" name="description__task" value={description__task.valor} onChange={description__task.onChange}></textarea>
                         </div>
 
                         <div className="form__data">
