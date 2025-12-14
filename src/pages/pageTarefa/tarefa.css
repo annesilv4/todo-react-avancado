@@ -42,6 +42,20 @@
   justify-content: flex-start;
 }
 
+input[type="checkbox"] {
+  margin-right: 5px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  accent-color: #007bff;
+}
+
+input[type="checkbox"]:checked {
+  accent-color: #ff6f00;
+  background-color: #4caf50;
+}
+
 .user__task h2 {
   font-size: 18px;
   font-weight: bold;
@@ -51,4 +65,16 @@
   font-size: 16px;
   color: #666;
   margin-bottom: 5px;
+}
+
+.user__task--completed {
+  background-color: #e1d6ce;
+  border-color: #ff6f00;
+}
+
+.user__task--completed .task__title,
+.user__task--completed .task__description,
+.user__task--completed .task__dateStart {
+  color: #999;
+  text-decoration: line-through;
 }
