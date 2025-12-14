@@ -78,3 +78,56 @@ input[type="checkbox"]:checked {
   color: #999;
   text-decoration: line-through;
 }
+
+.task__dates {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+}
+
+.user__taskContent {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+}
+
+.format__task {
+  display: flex;
+  gap: 10px;
+  justify-content: end;
+  padding-right: 71px;
+}
+
+.tasks__list {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.tasks__list svg {
+  font-size: 20px;
+}
+
+.tasks__list:hover {
+  color: #ff6f00;
+}
+
+.tasks__columns {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.tasks__columns svg {
+  font-size: 20px;
+}
+
+.tasks__columns:hover {
+  color: #ff6f00;
+}
