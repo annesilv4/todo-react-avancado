@@ -2,6 +2,10 @@
 
 Uma aplicação moderna de gerenciamento de tarefas desenvolvida com **React 19**, demonstrando conceitos avançados de desenvolvimento frontend.
 
+## 📸 Screenshots
+
+![Desktop - Tela Inicial](./src/assets/Todo-List.png)
+
 ## ✨ Características
 
 - ✅ Criar, editar e deletar tarefas
@@ -88,6 +92,26 @@ A aplicação utiliza a **CRUCRUD API** para operações de CRUD:
 - **Recursos**: Endpoints para gerenciar tarefas
 - **Configuração**: Localizada em `src/api/`
 
+## 📚 Funcionalidades Detalhadas
+
+### Gerenciamento de Tarefas
+
+- **Criar Tarefa**: Clique em "Nova Tarefa" para acessar o formulário de criação com campos para título, descrição, data de início, data de término e hora
+- **Editar Tarefa**: Clique no ícone de lápis (✏️) em qualquer tarefa para editar seus detalhes e salvar as alterações
+- **Deletar Tarefa**: Clique no ícone de lixeira (🗑️) para remover uma tarefa após confirmação
+- **Marcar como Concluída**: Use o checkbox ao lado de cada tarefa para marcar como concluída ou não
+
+### Filtros
+
+- **Todas**: Exibe todas as tarefas (concluídas e não concluídas)
+- **Concluídas**: Mostra apenas tarefas marcadas como concluídas
+- **Não Concluídas**: Exibe apenas tarefas pendentes
+
+### Formatos de Visualização
+
+- **Lista**: Exibe as tarefas em formato de lista linear
+- **Colunas**: Mostra as tarefas em formato de grade (cards)
+
 ## 📚 Padrões Utilizados
 
 - ✅ Componentes funcionais com Hooks
@@ -95,6 +119,8 @@ A aplicação utiliza a **CRUCRUD API** para operações de CRUD:
 - ✅ Axios para requisições HTTP
 - ✅ React Helmet para SEO
 - ✅ ESLint para qualidade de código
+- ✅ Custom Hooks (useInput) para gerenciamento de estado
+- ✅ useMemo para otimização de performance
 
 ## 📄 Licença
 
