@@ -21,11 +21,11 @@ function App() {
         <BrowserRouter>
             <Routes>
 
-                {/* Rota da Home */}
-                <Route path="/" element={<Tarefa />} />
-
                 {/* Rota de Login */}
-                <Route path='/login' element={<PageLogin />} />
+                <Route path="/" element={<PageLogin />} />
+
+                {/* Rota da Home (Tarefas) */}
+                <Route path='/tarefas' element={<Tarefa />} />
 
                 {/* Rota de Novo Usuário */}
                 <Route path='/formNewUser' element={<FormNewUser />} />

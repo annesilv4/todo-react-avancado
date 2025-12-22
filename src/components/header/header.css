@@ -5,12 +5,24 @@
   padding: 10px 200px;
   background-color: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-wrap: nowrap;
+  gap: 2rem;
+  min-height: auto;
+}
+
+.header__logo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 0 1 auto;
+  min-width: 0;
 }
 
 .header__title {
   font-size: 30px;
   font-weight: bold;
   color: #333333;
+  white-space: nowrap;
 }
 
 .header__title span {
@@ -20,11 +32,16 @@
 .header__subtitle {
   font-size: 15px;
   color: #666666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .header__user-actions {
   display: flex;
+  align-items: center;
   gap: 1rem;
+  flex: 0 0 auto;
 }
 
 .header__user {
@@ -79,4 +96,116 @@
 
 .header__logoutBtn:hover {
   color: #d32f2f;
+}
+
+/* TABLET PEQUENO - até 768px */
+@media (max-width: 768px) {
+  .header__page {
+    padding: 10px 40px;
+    gap: 1rem;
+  }
+
+  .header__logo {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .header__title {
+    font-size: 18px;
+  }
+
+  .header__subtitle {
+    font-size: 11px;
+  }
+
+  .header__user-actions {
+    gap: 0.5rem;
+    flex: 0 0 auto;
+  }
+
+  .header__user {
+    gap: 0.5rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .header__avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .header__name {
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .header__loginButton {
+    width: auto;
+    padding: 0.35rem 0.7rem;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .header__logoutBtn {
+    font-size: 1rem;
+  }
+}
+
+/* MOBILE - até 480px */
+@media (max-width: 480px) {
+  .header__page {
+    padding: 8px 10px;
+    flex-direction: row;
+    gap: 0.3rem;
+    justify-content: space-between;
+  }
+
+  .header__logo {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .header__title {
+    font-size: 15px;
+    margin: 0;
+  }
+
+  .header__subtitle {
+    font-size: 9px;
+    margin: 0;
+  }
+
+  .header__user-actions {
+    flex: 0 0 auto;
+    gap: 0.2rem;
+  }
+
+  .header__user {
+    gap: 0.15rem;
+    padding: 0.15rem 0.3rem;
+    border: none;
+    font-size: 9px;
+  }
+
+  .header__avatar {
+    width: 26px;
+    height: 26px;
+    font-size: 11px;
+  }
+
+  .header__name {
+    display: none;
+  }
+
+  .header__loginButton {
+    width: auto;
+    max-width: none;
+    padding: 0.25rem 0.5rem;
+    font-size: 10px;
+    white-space: nowrap;
+  }
+
+  .header__logoutBtn {
+    font-size: 0.85rem;
+  }
 }

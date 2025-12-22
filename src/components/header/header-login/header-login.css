@@ -21,3 +21,34 @@
   font-size: 15px;
   color: #666666;
 }
+
+/* TABLET - até 768px */
+@media (max-width: 768px) {
+  .header__page {
+    padding: 10px 50px;
+  }
+
+  .header__title {
+    font-size: 22px;
+  }
+
+  .header__subtitle {
+    font-size: 13px;
+  }
+}
+
+/* MOBILE - até 480px */
+@media (max-width: 480px) {
+  .header__page {
+    padding: 10px 15px;
+    gap: 0.5rem;
+  }
+
+  .header__title {
+    font-size: 18px;
+  }
+
+  .header__subtitle {
+    font-size: 12px;
+  }
+}

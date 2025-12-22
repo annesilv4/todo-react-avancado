@@ -46,12 +46,19 @@
   color: #ffffff;
 }
 
+.user__newTarefa {
+  display: block;
+}
+
 .btn__newTasks {
   padding: 5px 10px;
   background-color: #ffffff;
   color: #000000;
   cursor: pointer;
   border-radius: 6px;
+  border: none;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
 }
 
 .btn__newTasks:hover {
@@ -70,4 +77,161 @@
   text-align: center;
   margin-top: 50px;
   width: 100%;
+}
+
+/* DESKTOP - acima de 1024px */
+@media (min-width: 1025px) {
+  .user__newTarefa {
+    display: block;
+  }
+
+  .btn__newTasks {
+    padding: 8px 15px;
+    background-color: #ffffff;
+    color: #000000;
+    cursor: pointer;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    width: auto;
+    height: auto;
+    display: inline-block;
+  }
+
+  .btn__newTasks::after {
+    content: none;
+  }
+
+  .btn__newTasks:hover {
+    background-color: #ff4d00;
+    color: #ffffff;
+  }
+}
+
+/* MOBILE E TABLET - até 1024px (todos os dispositivos móveis) */
+@media (max-width: 1024px) {
+  .user__filter {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .all__tasks,
+  .completed__tasks,
+  .uncompleted__tasks {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .user__newTarefa {
+    position: fixed;
+    bottom: 120px;
+    right: 20px;
+    z-index: 100;
+  }
+
+  .btn__newTasks {
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    border: none !important;
+    color: transparent !important;
+    background-color: #ffffff !important;
+    font-size: 0 !important;
+  }
+
+  .btn__newTasks::after {
+    content: "+" !important;
+    font-size: 28px !important;
+    color: #000000 !important;
+  }
+
+  .btn__newTasks:hover,
+  .btn__newTasks:active {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  .user__tasks {
+    gap: 8px;
+  }
+
+  .user__noTasks {
+    font-size: 14px;
+    margin-top: 20px;
+  }
+}
+
+/* TABLET MÉDIO - 768px a 900px */
+@media (min-width: 769px) and (max-width: 900px) {
+  .user__filter {
+    gap: 10px;
+  }
+
+  .all__tasks,
+  .completed__tasks,
+  .uncompleted__tasks {
+    padding: 8px 15px;
+    font-size: 13px;
+  }
+
+  .user__newTarefa {
+    bottom: 140px !important;
+  }
+}
+
+/* TABLET GRANDE - 769px a 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .user__filter {
+    gap: 15px;
+  }
+
+  .all__tasks,
+  .completed__tasks,
+  .uncompleted__tasks {
+    padding: 10px 18px;
+    font-size: 14px;
+  }
+
+  .btn__newTasks {
+    width: 65px !important;
+    height: 65px !important;
+    font-size: 0 !important;
+  }
+
+  .btn__newTasks::after {
+    font-size: 30px !important;
+  }
+
+  .user__newTarefa {
+    bottom: 200px !important;
+  }
+}
+
+/* SMALL MOBILE - até 480px */
+@media (max-width: 480px) {
+  .user__filter {
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+  }
+
+  .all__tasks,
+  .completed__tasks,
+  .uncompleted__tasks {
+    width: 100%;
+    text-align: center;
+  }
+
+  .btn__newTasks {
+    width: 56px;
+    height: 56px;
+    font-size: 26px;
+  }
 }

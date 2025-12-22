@@ -5,7 +5,50 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Customização da Barra de Rolagem - Chrome, Safari, Edge */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff6f00;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff5722;
+}
+
+/* Customização da Barra de Rolagem - Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ff6f00 #f1f1f1;
+}
+
 main {
   padding: 50px 46px;
   min-height: 77.4vh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* TABLET - até 768px */
+@media (max-width: 768px) {
+  main {
+    padding: 30px 20px;
+    min-height: calc(100vh - 150px);
+  }
+}
+
+/* MOBILE - até 480px */
+@media (max-width: 480px) {
+  main {
+    padding: 20px 15px;
+    min-height: calc(100vh - 150px);
+  }
 }

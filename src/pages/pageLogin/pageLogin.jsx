@@ -23,7 +23,7 @@ export default function PageLogin() {
         console.log("Login realizado com sucesso");
 
         // Redireciona para Home / Tarefas
-        navigate("/");
+        navigate("/tarefas");
     };
 
     const handleRegister = async (formData) => {
