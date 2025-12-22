@@ -16,8 +16,20 @@ export default function Tarefa() {
     const [tasks, setTasks] = useState([]);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [checkedTasks, setCheckedTasks] = useState({});
+    const [filterStatus, setFilterStatus] = useState('all');
+    const [viewFormat, setViewFormat] = useState('list');
     const navigate = useNavigate();
     // const [loading, setLoading] = useState(true);
+
+    const filterTasks = () => {
+        if (filterStatus === 'all') {
+            return tasks;
+        } else if (filterStatus === 'completed') {
+            return tasks.filter(task => checkedTasks[task._id] === true);
+        } else if (filterStatus === 'uncompleted') {
+            return tasks.filter(task => checkedTasks[task._id] !== true);
+        }
+    }
 
     useEffect(() => {
         // Verifica se o usuário está logado
@@ -105,19 +117,29 @@ export default function Tarefa() {
                     <>
                         <h1 className="user__title">Suas Tarefas</h1>
                         <div className="user__action">
-                            <FiltrarTarefa />
+                            <FiltrarTarefa onFilterChange={setFilterStatus} currentFilter={filterStatus} />
                         </div>
 
                         <div className="format__task">
-                            <button className="tasks__list"><FontAwesomeIcon icon={faList} /></button>
-                            <button className="tasks__columns"><FontAwesomeIcon icon={faTableColumns} /></button>
+                            <button 
+                                className={`tasks__list ${viewFormat === 'list' ? 'active' : ''}`}
+                                onClick={() => setViewFormat('list')}
+                            >
+                                <FontAwesomeIcon icon={faList} />
+                            </button>
+                            <button 
+                                className={`tasks__columns ${viewFormat === 'columns' ? 'active' : ''}`}
+                                onClick={() => setViewFormat('columns')}
+                            >
+                                <FontAwesomeIcon icon={faTableColumns} />
+                            </button>
                         </div>
 
-                        <div className="user__tasks">
-                            {tasks.length == 0 ? (
+                        <div className={`user__tasks user__tasks--${viewFormat}`}>
+                            {filterTasks().length == 0 ? (
                                 <p className="user__noTasks">Nenhuma tarefa encontrada</p>
                             ) : (
-                                tasks.map(task => (
+                                filterTasks().map(task => (
                                     <div key={task._id} className={`user__task ${checkedTasks[task._id] ? 'user__task--completed' : ''}`}>
                                         <div className="user__taskCheckbox">
                                             <input

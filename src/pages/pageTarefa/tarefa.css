@@ -20,6 +20,7 @@
   gap: 10px;
   justify-content: end;
   padding-right: 71px;
+  padding-bottom: 10px;
 }
 
 .tasks__list {
@@ -76,6 +77,10 @@
   text-align: center;
 }
 
+.user__tasks--list .user__taskContent {
+  text-align: left;
+}
+
 /* TASK */
 .user__task {
   display: flex;
@@ -85,7 +90,7 @@
   margin-bottom: 10px;
   border-radius: 5px;
   gap: 10px;
-  align-items: baseline;
+  align-items: flex-start;
 }
 
 .user__taskCheckbox {
@@ -144,10 +149,40 @@ input[type="checkbox"]:checked {
   flex-direction: row;
   gap: 10px;
   justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.user__tasks--columns .task__dates {
+  flex-direction: row;
+  justify-content: center;
+}
+
+.user__tasks--list .task__dates {
+  flex-direction: row;
+  justify-content: flex-start;
 }
 
 /* TASK TIME */
 .task__time {
   font-size: 12px;
   color: #666;
+}
+
+/* VIEW FORMATS */
+.user__tasks--list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.user__tasks--columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 10px;
+}
+
+.tasks__list.active,
+.tasks__columns.active {
+  color: #ff6f00;
 }

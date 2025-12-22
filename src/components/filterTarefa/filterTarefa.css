@@ -12,7 +12,8 @@
   border-radius: 6px;
 }
 
-.all__tasks:hover {
+.all__tasks:hover,
+.all__tasks.active {
   background-color: #ff4d00;
   color: #ffffff;
 }
@@ -25,7 +26,8 @@
   border-radius: 6px;
 }
 
-.completed__tasks:hover {
+.completed__tasks:hover,
+.completed__tasks.active {
   background-color: #ff4d00;
   color: #ffffff;
 }
@@ -38,7 +40,8 @@
   border-radius: 6px;
 }
 
-.uncompleted__tasks:hover {
+.uncompleted__tasks:hover,
+.uncompleted__tasks.active {
   background-color: #ff4d00;
   color: #ffffff;
 }
