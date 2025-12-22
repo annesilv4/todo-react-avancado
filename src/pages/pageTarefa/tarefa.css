@@ -1,3 +1,4 @@
+/* TITLE PAGE */
 .user__title {
   font-size: 24px;
   font-weight: bold;
@@ -5,6 +6,7 @@
   text-align: center;
 }
 
+/* FILTER TASK */
 .user__action {
   display: flex;
   justify-content: space-between;
@@ -12,92 +14,7 @@
   margin-bottom: 20px;
 }
 
-.user__tasks {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-}
-
-.user__noTasks {
-  font-size: 16px;
-  color: #666;
-  text-align: center;
-}
-
-.user__task {
-  display: flex;
-  flex-direction: row;
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  gap: 10px;
-  align-items: baseline;
-}
-
-.user__taskCheckbox {
-  height: 13px;
-  width: 10px;
-  display: flex;
-  justify-content: flex-start;
-}
-
-input[type="checkbox"] {
-  margin-right: 5px;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  cursor: pointer;
-  accent-color: #007bff;
-}
-
-input[type="checkbox"]:checked {
-  accent-color: #ff6f00;
-  background-color: #4caf50;
-}
-
-.user__task h2 {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.user__task p {
-  font-size: 16px;
-  color: #666;
-  margin-bottom: 5px;
-}
-
-.user__task--completed {
-  background-color: #e1d6ce;
-  border-color: #ff6f00;
-}
-
-.user__task--completed .task__title,
-.user__task--completed .task__description,
-.user__task--completed .task__dateStart {
-  color: #999;
-  text-decoration: line-through;
-}
-
-.task__dates {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  justify-content: center;
-}
-
-.task__time {
-  font-size: 12px;
-  color: #666;
-}
-
-.user__taskContent {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  text-align: center;
-}
-
+/* FORMAT TASK */
 .format__task {
   display: flex;
   gap: 10px;
@@ -135,4 +52,102 @@ input[type="checkbox"]:checked {
 
 .tasks__columns:hover {
   color: #ff6f00;
+}
+
+/* TASKS LIST */
+.user__tasks {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+/* NO TASKS */
+.user__noTasks {
+  font-size: 16px;
+  color: #666;
+  text-align: center;
+}
+
+/* TASK CONTENT */
+.user__taskContent {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+}
+
+/* TASK */
+.user__task {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.user__taskCheckbox {
+  height: 13px;
+  width: 10px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* TASK CHECKBOX */
+input[type="checkbox"] {
+  margin-right: 5px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  accent-color: #007bff;
+}
+
+input[type="checkbox"]:checked {
+  accent-color: #ff6f00;
+  background-color: #4caf50;
+}
+
+.user__task--completed {
+  background-color: #e1d6ce;
+  border-color: #ff6f00;
+}
+
+.user__task--completed .task__title,
+.user__task--completed .task__description,
+.user__task--completed .task__dateStart,
+.user__task--completed .task__dateEnd,
+.user__task--completed .task__time {
+  color: #999;
+  text-decoration: line-through;
+}
+
+/* TASK TITLE */
+.user__task h2 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* TASK DESCRIPTION */
+.user__task p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+/* TASK DATES */
+.task__dates {
+  font-size: 12px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* TASK TIME */
+.task__time {
+  font-size: 12px;
+  color: #666;
 }
