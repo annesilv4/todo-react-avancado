@@ -86,12 +86,12 @@
   }
 
   .btn__newTasks {
-    padding: 8px 15px;
+    padding: 5px 10px;
     background-color: #ffffff;
     color: #000000;
     cursor: pointer;
     border-radius: 6px;
-    border: 1px solid #ccc;
+    border: 1px solid #000;
     font-size: 14px;
     transition: background-color 0.3s ease;
     width: auto;
@@ -154,8 +154,13 @@
 
   .btn__newTasks:hover,
   .btn__newTasks:active {
+    background-color: #ff4d00 !important;
     transform: scale(1.1);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  .btn__newTasks:hover::after {
+    color: #ffffff !important;
   }
 
   .user__tasks {
