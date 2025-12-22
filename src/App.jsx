@@ -11,7 +11,7 @@ function App() {
     const handleCreateTask = async (taskData) => {
         try {
             await createTask(taskData);
-            window.location.href = "/";
+            window.location.href = "/tarefas";
         } catch (err) {
             console.error("Error creating task:", err);
         }

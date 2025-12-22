@@ -2,15 +2,16 @@ import "./tarefa.css";
 import Header from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import FiltrarTarefa from "../../components/filterTarefa/filterTarefa";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { getTask, updateTask } from "../../api/apiTarefa";
+import { getTask, updateTask, deleteTask } from "../../api/apiTarefa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar } from "@fortawesome/free-regular-svg-icons";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { faTableColumns } from "@fortawesome/free-solid-svg-icons";
 import { faList } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default function Tarefa() {
     const [tasks, setTasks] = useState([]);
@@ -21,7 +22,7 @@ export default function Tarefa() {
     const navigate = useNavigate();
     // const [loading, setLoading] = useState(true);
 
-    const filterTasks = () => {
+    const filteredTasks = useMemo(() => {
         if (filterStatus === 'all') {
             return tasks;
         } else if (filterStatus === 'completed') {
@@ -29,7 +30,12 @@ export default function Tarefa() {
         } else if (filterStatus === 'uncompleted') {
             return tasks.filter(task => checkedTasks[task._id] !== true);
         }
-    }
+    }, [tasks, checkedTasks, filterStatus]);
+
+    const monthNames = useMemo(() => [
+        'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
+        'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'
+    ], []);
 
     useEffect(() => {
         // Verifica se o usuário está logado
@@ -90,12 +96,24 @@ export default function Tarefa() {
         }
     }
 
+    const handleDeleteTask = async (taskId) => {
+        if (confirm("Tem certeza que deseja excluir esta tarefa?")) {
+            try {
+                await deleteTask(taskId);
+                setTasks(prev => prev.filter(task => task._id !== taskId));
+                console.log("Tarefa excluída com sucesso");
+            } catch (err) {
+                console.error("[ ERROR DELETE TASK ]", err);
+            }
+        }
+    }
+
+    const handleEditTask = (task) => {
+        navigate(`/formTarefa`, { state: { task } });
+    }
+
     const handleFormatDate = (date) => {
         if (!date) return '';
-        const monthNames = [
-            'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
-            'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'
-        ];
 
         // Se a data está em formato YYYY-MM-DD, formata para DD de mês de YYYY
         if (date.includes('-')) {
@@ -121,13 +139,13 @@ export default function Tarefa() {
                         </div>
 
                         <div className="format__task">
-                            <button 
+                            <button
                                 className={`tasks__list ${viewFormat === 'list' ? 'active' : ''}`}
                                 onClick={() => setViewFormat('list')}
                             >
                                 <FontAwesomeIcon icon={faList} />
                             </button>
-                            <button 
+                            <button
                                 className={`tasks__columns ${viewFormat === 'columns' ? 'active' : ''}`}
                                 onClick={() => setViewFormat('columns')}
                             >
@@ -136,10 +154,10 @@ export default function Tarefa() {
                         </div>
 
                         <div className={`user__tasks user__tasks--${viewFormat}`}>
-                            {filterTasks().length == 0 ? (
+                            {filteredTasks.length == 0 ? (
                                 <p className="user__noTasks">Nenhuma tarefa encontrada</p>
                             ) : (
-                                filterTasks().map(task => (
+                                filteredTasks.map(task => (
                                     <div key={task._id} className={`user__task ${checkedTasks[task._id] ? 'user__task--completed' : ''}`}>
                                         <div className="user__taskCheckbox">
                                             <input
@@ -149,19 +167,35 @@ export default function Tarefa() {
                                             />
                                         </div>
                                         <div className="user__taskContent">
-                                            <h2 className="task__title">{task.title}</h2>
-                                            <p className="task__description">{task.description}</p>
-                                            {(task.dateStart || task.dateEnd) && (
-                                                <div className="task__dates">
-                                                    <FontAwesomeIcon icon={faCalendar} />
-                                                    <small className="task__dateStart">{handleFormatDate(task.dateStart)}</small>
-                                                    <FontAwesomeIcon icon={faArrowRight} />
-                                                    <small className="task__dateEnd">{handleFormatDate(task.dateEnd)}</small>
-                                                </div>
-                                            )}
-                                            {task.time && (
-                                                <div className="task__time"><FontAwesomeIcon icon={faClock} /> {task.time}</div>
-                                            )}
+                                             <h2 className="task__title">{task.title}</h2>
+                                             <p className="task__description">{task.description}</p>
+                                             {(task.dateStart || task.dateEnd) && (
+                                                 <div className="task__dates">
+                                                     <FontAwesomeIcon icon={faCalendar} />
+                                                     <small className="task__dateStart">{handleFormatDate(task.dateStart)}</small>
+                                                     <FontAwesomeIcon icon={faArrowRight} />
+                                                     <small className="task__dateEnd">{handleFormatDate(task.dateEnd)}</small>
+                                                 </div>
+                                             )}
+                                             {task.time && (
+                                                 <div className="task__time"><FontAwesomeIcon icon={faClock} /> {task.time}</div>
+                                             )}
+                                        </div>
+                                        <div className="user__taskActions">
+                                            <button 
+                                                className="btn__edit" 
+                                                onClick={() => handleEditTask(task)}
+                                                title="Editar tarefa"
+                                            >
+                                                <FontAwesomeIcon icon={faEdit} />
+                                            </button>
+                                            <button 
+                                                className="btn__delete" 
+                                                onClick={() => handleDeleteTask(task._id)}
+                                                title="Excluir tarefa"
+                                            >
+                                                <FontAwesomeIcon icon={faTrash} />
+                                            </button>
                                         </div>
                                     </div>
                                 ))

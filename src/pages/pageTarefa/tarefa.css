@@ -75,10 +75,47 @@
   flex-direction: column;
   gap: 5px;
   text-align: center;
+  flex: 1;
 }
 
 .user__tasks--list .user__taskContent {
   text-align: left;
+}
+
+/* TASK ACTIONS */
+.user__taskActions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn__edit,
+.btn__delete {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 5px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.btn__edit {
+  color: #007bff;
+}
+
+.btn__edit:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+  color: #0056b3;
+}
+
+.btn__delete {
+  color: #dc3545;
+}
+
+.btn__delete:hover {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: #c82333;
 }
 
 /* TASK */

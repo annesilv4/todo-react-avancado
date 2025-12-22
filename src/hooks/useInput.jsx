@@ -11,9 +11,14 @@ export default function useInput(initialValue = "") {
         setValor("");
     }
 
+    const setValue = (newValue) => {
+        setValor(newValue);
+    }
+
     return {
         valor,
         onChange,
         reset,
+        setValue,
     };
 }

@@ -2,7 +2,9 @@ import "./formTarefa.css"
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import useInput from "../../hooks/useInput";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { updateTask } from "../../api/apiTarefa";
 
 export default function FormTarefa({ onSubmit }) {
     const task = useInput("");
@@ -10,8 +12,21 @@ export default function FormTarefa({ onSubmit }) {
     const dateStart = useInput("");
     const dateEnd = useInput("");
     const time = useInput("");
+    const navigate = useNavigate();
+    const location = useLocation();
+    const editingTask = location.state?.task;
 
-    const handleSubmit = (e) => {
+    useEffect(() => {
+        if (editingTask) {
+            task.setValue(editingTask.title);
+            description__task.setValue(editingTask.description);
+            dateStart.setValue(editingTask.dateStart);
+            dateEnd.setValue(editingTask.dateEnd);
+            time.setValue(editingTask.time);
+        }
+    }, [editingTask]);
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const userId = localStorage.getItem("token");
@@ -22,23 +37,31 @@ export default function FormTarefa({ onSubmit }) {
             dateStart: dateStart.valor,
             dateEnd: dateEnd.valor,
             time: time.valor,
-            status: "uncompleted",
+            status: editingTask?.status || "uncompleted",
             userId: userId,
         };
 
-        onSubmit(newTask);
+        if (editingTask) {
+            try {
+                await updateTask(editingTask._id, newTask);
+                console.log("Tarefa atualizada com sucesso");
+                navigate("/tarefas");
+            } catch (err) {
+                console.error("Erro ao atualizar tarefa:", err);
+            }
+        } else {
+            onSubmit(newTask);
+        }
     }
-
-    const navigate = useNavigate();
 
 
     return (
         <>
-            <title>Todo List - Criando Tarefa</title>
+            <title>Todo List - {editingTask ? "Editar" : "Criar"} Tarefa</title>
             <Header />
 
             <main>
-                <h1 className="formTarefa__title">Descreva sua Tarefa</h1>
+                <h1 className="formTarefa__title">{editingTask ? "Edite sua" : "Descreva sua"} Tarefa</h1>
 
                 <div className="form">
                     <form onSubmit={handleSubmit}>
@@ -68,7 +91,7 @@ export default function FormTarefa({ onSubmit }) {
                             <input type="time" id="hora" name="hora" value={time.valor} onChange={time.onChange} />
                         </div>
 
-                        <button className="btn__newTask" type="submit" onClick={() => navigate("/")}>Criar Tarefa</button>
+                        <button className="btn__newTask" type="submit">{editingTask ? "Salvar Alterações" : "Criar Tarefa"}</button>
                     </form>
                 </div>
             </main>
