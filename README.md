@@ -76,7 +76,8 @@ src/
 ├── api/              # Configurações e chamadas de API
 ├── assets/           # Imagens e recursos estáticos
 ├── components/       # Componentes reutilizáveis
-├── hooks/            # Custom React Hooks
+├── context/          # React Context (TodoContext, UserContext)
+├── hooks/            # Custom React Hooks (useAuth, useTodo, useInput)
 ├── pages/            # Páginas da aplicação
 ├── App.jsx           # Componente raiz
 ├── App.css           # Estilos globais
@@ -115,11 +116,12 @@ A aplicação utiliza a **CRUCRUD API** para operações de CRUD:
 ## 📚 Padrões Utilizados
 
 - ✅ Componentes funcionais com Hooks
+- ✅ React Context API para gerenciamento de estado global
+- ✅ Custom Hooks (useAuth, useTodo, useInput) para lógica reutilizável
 - ✅ React Router para navegação
 - ✅ Axios para requisições HTTP
 - ✅ React Helmet para SEO
 - ✅ ESLint para qualidade de código
-- ✅ Custom Hooks (useInput) para gerenciamento de estado
 - ✅ useMemo para otimização de performance
 
 ## 📄 Licença
