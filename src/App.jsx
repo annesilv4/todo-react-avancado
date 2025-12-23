@@ -3,20 +3,8 @@ import Tarefa from './pages/pageTarefa/tarefa';
 import PageLogin from './pages/pageLogin/pageLogin';
 import FormNewUser from './components/formNewUser/formNewUser';
 import FormTarefa from './components/formTarefa/formTarefa';
-import { createTask } from './api/apiTarefa';
-
 
 function App() {
-    // FUNCTION PARA CRIAR UMA NOVA TAREFA
-    const handleCreateTask = async (taskData) => {
-        try {
-            await createTask(taskData);
-            window.location.href = "/tarefas";
-        } catch (err) {
-            console.error("Error creating task:", err);
-        }
-    };
-
     return (
         <BrowserRouter>
             <Routes>
@@ -30,8 +18,8 @@ function App() {
                 {/* Rota de Novo Usuário */}
                 <Route path='/formNewUser' element={<FormNewUser />} />
 
-                {/* Rota de Fazer Tarefa */}
-                <Route path='/formTarefa' element={<FormTarefa onSubmit={handleCreateTask} />} />
+                {/* Rota de Criar/Editar Tarefa */}
+                <Route path='/formTarefa' element={<FormTarefa />} />
 
             </Routes>
         </BrowserRouter>

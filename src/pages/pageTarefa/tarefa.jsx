@@ -2,9 +2,10 @@ import "./tarefa.css";
 import Header from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import FiltrarTarefa from "../../components/filterTarefa/filterTarefa";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { getTask, updateTask, deleteTask } from "../../api/apiTarefa";
+import { useTodo } from "../../hooks/useTodo";
+import { useAuth } from "../../hooks/useAuth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar } from "@fortawesome/free-regular-svg-icons";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
@@ -14,13 +15,12 @@ import { faList } from "@fortawesome/free-solid-svg-icons";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default function Tarefa() {
-    const [tasks, setTasks] = useState([]);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const { tasks, updateTask, deleteTask } = useTodo();
+    const { isAuthenticated } = useAuth();
     const [checkedTasks, setCheckedTasks] = useState({});
     const [filterStatus, setFilterStatus] = useState('all');
     const [viewFormat, setViewFormat] = useState('list');
     const navigate = useNavigate();
-    // const [loading, setLoading] = useState(true);
 
     const filteredTasks = useMemo(() => {
         if (filterStatus === 'all') {
@@ -36,32 +36,6 @@ export default function Tarefa() {
         'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
         'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'
     ], []);
-
-    useEffect(() => {
-        // Verifica se o usuário está logado
-        const token = localStorage.getItem("token");
-        if (!token) {
-            setIsAuthenticated(false);
-            return;
-        }
-
-        setIsAuthenticated(true);
-
-        const fetchTarefas = async () => {
-            try {
-                const request = await getTask();
-                // Filtra tarefas do usuário logado
-                const userId = localStorage.getItem("token");
-                const userTasks = request.filter(task => task.userId === userId);
-                setTasks(userTasks);
-            } catch (err) {
-                console.error("[ ERROR TASKS ]", err);
-            } finally {
-                // setLoading(false);
-            }
-        };
-        fetchTarefas();
-    }, [])
 
     const handleCheckbox = async (taskId, task) => {
         const newStatus = !checkedTasks[taskId];
@@ -100,7 +74,6 @@ export default function Tarefa() {
         if (confirm("Tem certeza que deseja excluir esta tarefa?")) {
             try {
                 await deleteTask(taskId);
-                setTasks(prev => prev.filter(task => task._id !== taskId));
                 console.log("Tarefa excluída com sucesso");
             } catch (err) {
                 console.error("[ ERROR DELETE TASK ]", err);
