@@ -4,28 +4,34 @@ import Tarefa from './pages/pageTarefa/tarefa';
 import PageLogin from './pages/pageLogin/pageLogin';
 import FormNewUser from './components/formNewUser/formNewUser';
 import FormTarefa from './components/formTarefa/formTarefa';
+import { UserProvider } from './context/UserContext';
+import { TodoProvider } from './context/TodoContext';
 
 function App() {
     return (
-        <LoadingProvider>
-            <BrowserRouter>
-                <Routes>
+        <UserProvider>
+            <TodoProvider>
+                <LoadingProvider>
+                    <BrowserRouter>
+                        <Routes>
 
-                    {/* Rota de Login */}
-                    <Route path="/" element={<PageLogin />} />
+                            {/* Rota de Login */}
+                            <Route path="/" element={<PageLogin />} />
 
-                    {/* Rota da Home (Tarefas) */}
-                    <Route path='/tarefas' element={<Tarefa />} />
+                            {/* Rota da Home (Tarefas) */}
+                            <Route path='/tarefas' element={<Tarefa />} />
 
-                    {/* Rota de Novo Usuário */}
-                    <Route path='/formNewUser' element={<FormNewUser />} />
+                            {/* Rota de Novo Usuário */}
+                            <Route path='/formNewUser' element={<FormNewUser />} />
 
-                    {/* Rota de Criar/Editar Tarefa */}
-                    <Route path='/formTarefa' element={<FormTarefa />} />
+                            {/* Rota de Criar/Editar Tarefa */}
+                            <Route path='/formTarefa' element={<FormTarefa />} />
 
-                </Routes>
-            </BrowserRouter>
-        </LoadingProvider>
+                        </Routes>
+                    </BrowserRouter>
+                </LoadingProvider>
+            </TodoProvider>
+        </UserProvider>
     );
 }
 

@@ -2,7 +2,7 @@ import "./tarefa.css";
 import Header from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import FiltrarTarefa from "../../components/filterTarefa/filterTarefa";
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTodo } from "../../hooks/useTodo";
 import { useAuth } from "../../hooks/useAuth";
@@ -15,22 +15,21 @@ import { faList } from "@fortawesome/free-solid-svg-icons";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default function Tarefa() {
-    const { tasks, updateTask, deleteTask } = useTodo();
-    const { isAuthenticated } = useAuth();
-    const [checkedTasks, setCheckedTasks] = useState({});
-    const [filterStatus, setFilterStatus] = useState('all');
-    const [viewFormat, setViewFormat] = useState('list');
-    const navigate = useNavigate();
+     const { tasks, updateTask, deleteTask } = useTodo();
+     const { isAuthenticated } = useAuth();
+     const [filterStatus, setFilterStatus] = useState('all');
+     const [viewFormat, setViewFormat] = useState('list');
+     const navigate = useNavigate();
 
-    const filteredTasks = useMemo(() => {
-        if (filterStatus === 'all') {
-            return tasks;
-        } else if (filterStatus === 'completed') {
-            return tasks.filter(task => checkedTasks[task._id] === true);
-        } else if (filterStatus === 'uncompleted') {
-            return tasks.filter(task => checkedTasks[task._id] !== true);
-        }
-    }, [tasks, checkedTasks, filterStatus]);
+     const filteredTasks = useMemo(() => {
+         if (filterStatus === 'all') {
+             return tasks;
+         } else if (filterStatus === 'completed') {
+             return tasks.filter(task => task.status === 'completed');
+         } else if (filterStatus === 'uncompleted') {
+             return tasks.filter(task => task.status === 'uncompleted');
+         }
+     }, [tasks, filterStatus]);
 
     const monthNames = useMemo(() => [
         'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
@@ -38,13 +37,7 @@ export default function Tarefa() {
     ], []);
 
     const handleCheckbox = async (taskId, task) => {
-        const newStatus = !checkedTasks[taskId];
-
-        // Atualiza estado local
-        setCheckedTasks(prev => ({
-            ...prev,
-            [taskId]: newStatus
-        }));
+        const newStatus = task.status === 'completed' ? 'uncompleted' : 'completed';
 
         // Atualiza no banco de dados
         try {
@@ -55,18 +48,13 @@ export default function Tarefa() {
                 dateEnd: task.dateEnd,
                 time: task.time,
                 userId: task.userId,
-                status: newStatus ? "completed" : "uncompleted"
+                status: newStatus
             };
 
             await updateTask(taskId, updateData);
             console.log("Tarefa atualizada com sucesso");
         } catch (err) {
             console.error("[ ERROR UPDATE TASK ]", err);
-            // Desfaz a mudança em caso de erro
-            setCheckedTasks(prev => ({
-                ...prev,
-                [taskId]: !newStatus
-            }));
         }
     }
 
@@ -131,12 +119,12 @@ export default function Tarefa() {
                                 <p className="user__noTasks">Nenhuma tarefa encontrada</p>
                             ) : (
                                 filteredTasks.map(task => (
-                                    <div key={task._id} className={`user__task ${checkedTasks[task._id] ? 'user__task--completed' : ''}`}>
+                                    <div key={task._id} className={`user__task ${task.status === 'completed' ? 'user__task--completed' : ''}`}>
                                         <div className="user__taskCheckbox">
                                             <input
                                                 type="checkbox"
                                                 onChange={() => handleCheckbox(task._id, task)}
-                                                checked={checkedTasks[task._id] || false}
+                                                checked={task.status === 'completed'}
                                             />
                                         </div>
                                         <div className="user__taskContent">
